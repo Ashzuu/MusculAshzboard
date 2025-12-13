@@ -1,11 +1,19 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
-import { routes } from './app.routes';
+import { routes } from './routes/app.routes';
+import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
+import { providePrimeNG } from 'primeng/config';
+import {MyCustomPreset} from "./theme/custom-theme";
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes)
+    provideRouter(routes),
+    provideAnimationsAsync(),
+    providePrimeNG({
+      theme: {
+        preset:MyCustomPreset
+      }
+    })
   ]
 };
