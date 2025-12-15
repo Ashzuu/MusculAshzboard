@@ -1,10 +1,8 @@
 import { Routes } from '@angular/router';
-import {HomePage} from "../features/pages/home-page/home-page";
+import {principalRoutes} from "./principal.routes";
+import {exerciseRoutes} from "./exercise.routes";
 
 export const routes: Routes = [
-  {
-    path:'',
-    component:HomePage,
-    pathMatch: 'full',
-  }
+  ...principalRoutes,
+  ...exerciseRoutes
 ];

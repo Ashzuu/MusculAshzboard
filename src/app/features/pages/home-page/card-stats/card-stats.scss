@@ -1,0 +1,38 @@
+:host {
+  width: 20%;
+}
+
+.card {
+  padding: 20px;
+  display: flex;
+  font-size: 20px;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  min-width: fit-content;
+}
+
+.card p {
+  margin: 0;
+}
+
+.card-value {
+  font-size: 64px;
+  color: var(--color-primary);
+}
+
+.card-name {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-name .card-name-important {
+  font-size: 30px;
+  color: var(--color-text-main);
+}
+
+.card-name .card-name-not-important {
+  color: var(--color-text-secondary);
+}

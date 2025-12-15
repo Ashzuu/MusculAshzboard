@@ -1,5 +1,11 @@
 @import "primeicons/primeicons.css";
+@import "src/app/theme/var.scss";
 
 * {
   font-family: Inter, "Courier New", Cambria, Georgia, sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
 }
