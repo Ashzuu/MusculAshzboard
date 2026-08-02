@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit, Signal} from '@angular/core';
 import { MenubarModule } from 'primeng/menubar';
 import {MenuItem} from "primeng/api";
 import {ButtonModule} from "primeng/button";
+import {ThemeService} from '../../../../core/services/theme/theme-service';
 
 @Component({
   selector: 'ashz-header',
@@ -11,9 +12,20 @@ import {ButtonModule} from "primeng/button";
 })
 export class Header implements OnInit {
   private items: MenuItem[] = [];
+  private themeService: ThemeService = inject(ThemeService)
 
+  /**
+   * Return all categories and items of the header.
+   */
   public get Items():MenuItem[]{
     return this.items;
+  }
+
+  /**
+   * Extract the icon to show in the header bar
+   */
+  public get Icon(): Signal<string>{
+    return this.themeService.Icon;
   }
 
   /**
@@ -51,7 +63,8 @@ export class Header implements OnInit {
           },
           {
             label: 'Voir mes entrainements',
-            icon: "pi pi-check"
+            icon: "pi pi-check",
+            routerLink: "/trainings"
           }
         ]
       },
@@ -70,6 +83,10 @@ export class Header implements OnInit {
         ]
       }
     ]
+  }
+
+  public changeTheme(){
+    this.themeService.changeTheme();
   }
 }
 

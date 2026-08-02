@@ -1,5 +1,5 @@
 import {Routes} from "@angular/router";
-import {ExercisePage} from "../features/pages/exercise/exercise-page/exercise-page";
+import {ExercisePage} from "../features/exercise/exercise-page/exercise-page";
 
 export const exerciseRoutes: Routes = [
   {

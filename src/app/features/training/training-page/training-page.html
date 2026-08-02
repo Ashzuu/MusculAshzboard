@@ -1,0 +1,75 @@
+<ashz-base-layout>
+  <div class="training-container">
+    <div class="header-section">
+      <h1>Vos entrainements</h1>
+      <p-button id="add-button-training" label="Ajouter un entrainement" icon="pi pi-plus" (onClick)="onClickAddTraining()"></p-button>
+    </div>
+
+    @if(this.IsLoading()){
+      <div class="training-grid">
+        @for (i of [1, 2, 3, 4, 5]; track i) {
+          <p-card class="training-card">
+            <ng-template pTemplate="title">
+              <p-skeleton width="70%" height="2rem"></p-skeleton>
+            </ng-template>
+            <ng-template pTemplate="subtitle">
+              <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+                <p-skeleton width="30%" height="1rem"></p-skeleton>
+                <p-skeleton width="20%" height="1rem"></p-skeleton>
+              </div>
+            </ng-template>
+            <p-skeleton width="100%" height="40px" class="mb-3"></p-skeleton>
+
+            <div class="tags-container">
+              <p-skeleton width="4rem" height="1.5rem" borderRadius="16px"></p-skeleton>
+              <p-skeleton width="5rem" height="1.5rem" borderRadius="16px"></p-skeleton>
+            </div>
+
+            <ng-template pTemplate="footer">
+              <div class="footer-actions">
+                <p-skeleton width="5rem" height="1rem"></p-skeleton>
+                <p-skeleton width="6rem" height="2.5rem" borderRadius="6px"></p-skeleton>
+              </div>
+            </ng-template>
+          </p-card>
+        }
+      </div>
+    } @else {
+      @if(this.Trainings().length !== 0){
+        <div class="training-grid">
+          @for (training of this.Trainings(); track training.id) {
+            <p-card [header]="training.label" class="training-card">
+              <ng-template pTemplate="subtitle">
+                <span class="intensity">Intensité: {{ training.intensity }}/10</span>
+                <span class="time"><i class="pi pi-clock"></i> {{ training.estimated_time }} min</span>
+              </ng-template>
+              <p class="description">{{ training.description || 'Aucune description' }}</p>
+
+              <div class="tags-container">
+                @for (group of training.muscular_groups; track group.id) {
+                  <p-tag [value]="group.name_fr" severity="info" [rounded]="true"></p-tag>
+                }
+              </div>
+
+              <ng-template pTemplate="footer">
+                <div class="footer-actions">
+                  <span>{{ training.exercises.length }} exercices</span>
+                  <p-button label="Détails" icon="pi pi-search" severity="secondary"></p-button>
+                </div>
+              </ng-template>
+            </p-card>
+          }
+
+        </div>
+      }
+      @else {
+        <div class="empty-state">
+          <i class="pi pi-inbox"></i>
+          <p>Vous n'avez pas encore d'entrainements.</p>
+          <p-button label="Créer mon premier entrainement" icon="pi pi-plus" (onClick)="onClickAddTraining()"></p-button>
+        </div>
+      }
+    }
+
+  </div>
+</ashz-base-layout>

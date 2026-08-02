@@ -5,10 +5,11 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@models/*": ["src/app/models/*"],
+      "@models/*": ["src/app/core/models/*"],
       "@repository/*": ["src/app/core/repositories/*"],
       "@service/*": ["src/app/core/services/*"],
-      "@shared/*": ["src/app/shared/*"]
+      "@shared/*": ["src/app/shared/*"],
+      "@services/*": ["src/app/features/services/*"]
     },
     "strict": true,
     "noImplicitOverride": true,

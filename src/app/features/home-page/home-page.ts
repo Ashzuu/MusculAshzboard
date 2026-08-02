@@ -6,7 +6,6 @@ import {CardStats} from "./card-stats/card-stats";
   selector: 'ashz-home-page',
   imports: [
     BaseLayout,
-    CardStats
   ],
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss',

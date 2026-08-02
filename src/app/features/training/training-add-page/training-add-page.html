@@ -1,0 +1,105 @@
+<ashz-base-layout>
+  <div class="add-training-container">
+    <div class="header-section">
+      <h1>Ajouter un entrainement</h1>
+      <p-button icon="pi pi-times" [rounded]="true" [text]="true" severity="secondary" (onClick)="cancel()"></p-button>
+    </div>
+
+    <form [formGroup]="trainingForm" (ngSubmit)="onSubmit()">
+
+      <p-card class="form-card mb-4">
+        <h2>Informations générales</h2>
+
+        <div class="form-grid">
+          <div class="field col-12 md:col-6">
+            <label for="label">Libellé <span class="required">*</span></label>
+            <input pInputText id="label" formControlName="label" placeholder="Ex: Push Day - Hypertrophie" class="w-full" />
+            @if (trainingForm.get('label')?.invalid && trainingForm.get('label')?.touched) {
+              <small class="p-error">Le libellé est requis.</small>
+            }
+          </div>
+
+          <div class="field col-12 md:col-6">
+            <label for="muscular_groups">Groupes Musculaires Ciblés <span class="required">*</span></label>
+            <p-multiSelect id="muscular_groups" formControlName="muscular_groups" [options]="muscularGroups()" optionLabel="name_fr" placeholder="Sélectionnez les groupes" styleClass="w-full"></p-multiSelect>
+            @if (trainingForm.get('muscular_groups')?.invalid && trainingForm.get('muscular_groups')?.touched) {
+              <small class="p-error">Au moins un groupe musculaire est requis.</small>
+            }
+          </div>
+
+          <div class="field col-12 md:col-6">
+            <label for="intensity">Intensité ({{ trainingForm.get('intensity')?.value }}/10) <span class="required">*</span></label>
+            <div class="slider-container">
+              <p-slider formControlName="intensity" [min]="1" [max]="10" styleClass="w-full"></p-slider>
+            </div>
+          </div>
+
+          <div class="field col-12 md:col-6">
+            <label for="estimated_time">Temps estimé (minutes) <span class="required">*</span></label>
+            <p-inputNumber id="estimated_time" formControlName="estimated_time" [min]="1" class="w-full" styleClass="w-full"></p-inputNumber>
+          </div>
+
+          <div class="field col-12">
+            <label for="description">Description (Facultative)</label>
+            <textarea pTextarea id="description" formControlName="description" rows="3" class="w-full" placeholder="Décrivez l'objectif de la séance..."></textarea>
+          </div>
+        </div>
+      </p-card>
+
+      <p-card class="form-card mb-4">
+        <div class="exercises-header">
+          <h2>Exercices</h2>
+          <p-button label="Ajouter un exercice" icon="pi pi-plus" size="small" (onClick)="addExercise()"></p-button>
+        </div>
+
+        <div formArrayName="exercises" class="exercises-list">
+          @for (exercise of exercisesFormArray.controls; track $index) {
+            <div [formGroupName]="$index" class="exercise-group">
+              <div class="exercise-item-header">
+                <h3>Exercice {{ $index + 1 }}</h3>
+                <p-button icon="pi pi-trash" severity="danger" [text]="true" [rounded]="true" (onClick)="removeExercise($index)"></p-button>
+              </div>
+
+              <div class="form-grid">
+                <div class="field col-12 md:col-6">
+                  <label>Choix de l'exercice <span class="required">*</span></label>
+                  <p-select formControlName="exercise" [options]="availableExercises()" optionLabel="name_fr" placeholder="Sélectionnez un exercice" styleClass="w-full" [filter]="true" filterBy="name_fr"></p-select>
+                </div>
+
+              <div class="field col-12 md:col-6">
+                <label>Notes</label>
+                <input pInputText formControlName="notes" placeholder="Ex: Focus sur l'étirement" class="w-full" />
+              </div>
+
+              <div class="field col-12 md:col-4">
+                <label>Séries <span class="required">*</span></label>
+                <p-inputNumber formControlName="sets" [min]="1" [showButtons]="true" class="w-full"></p-inputNumber>
+              </div>
+
+              <div class="field col-12 md:col-4">
+                <label>Répétitions <span class="required">*</span></label>
+                <p-inputNumber formControlName="reps" [min]="1" [showButtons]="true" class="w-full"></p-inputNumber>
+              </div>
+
+              <div class="field col-12 md:col-4">
+                <label>Charge (kg) <span class="required">*</span></label>
+                <p-inputNumber formControlName="weight" [min]="0" mode="decimal" [minFractionDigits]="1" [maxFractionDigits]="2" class="w-full"></p-inputNumber>
+              </div>
+            </div>
+            </div>
+          }
+          @if(exercisesFormArray.length === 0) {
+            <div class="no-exercises">
+              <p>Aucun exercice ajouté pour le moment.</p>
+            </div>
+          }
+        </div>
+      </p-card>
+
+      <div class="form-actions">
+        <p-button label="Annuler" severity="secondary" (onClick)="cancel()"></p-button>
+        <p-button label="Enregistrer l'entrainement" type="submit" icon="pi pi-check" [disabled]="trainingForm.invalid"></p-button>
+      </div>
+    </form>
+  </div>
+</ashz-base-layout>

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, inject, Signal} from '@angular/core';
 import {Header} from "./header/header";
+import {ThemeService} from '../../../core/services/theme/theme-service';
 
 @Component({
   selector: 'ashz-base-layout',
@@ -10,5 +11,4 @@ import {Header} from "./header/header";
   styleUrl: './base-layout.scss',
 })
 export class BaseLayout {
-
 }

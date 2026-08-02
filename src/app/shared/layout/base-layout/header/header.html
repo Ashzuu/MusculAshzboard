@@ -1,5 +1,8 @@
 <header>
   <p-menubar [model]="Items">
-    <p-button class="custom-button-header" label="Démarrer une session" variant="outlined"></p-button>
+    <div class="header-extra-content">
+      <p-button class="custom-button-header" label="Nouvelle séance" variant="outlined"></p-button>
+      <span class="pi pi-{{this.Icon()}}" id="theme-icon" (click)="this.changeTheme()"></span>
+    </div>
   </p-menubar>
 </header>

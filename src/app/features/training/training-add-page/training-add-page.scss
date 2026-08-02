@@ -1,0 +1,115 @@
+.add-training-container {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  .header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    h1 {
+      margin: 0;
+      color: var(--p-text-color);
+    }
+  }
+
+  .form-card {
+    h2 {
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      font-size: 1.25rem;
+      border-bottom: 1px solid var(--p-content-border-color);
+      padding-bottom: 0.5rem;
+    }
+  }
+
+  .form-grid {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -1rem;
+    margin-left: -1rem;
+
+    .field {
+      padding: 0 1rem;
+      margin-bottom: 1.5rem;
+
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+
+        .required {
+          color: var(--p-red-500);
+        }
+      }
+    }
+
+    .w-full {
+      width: 100%;
+    }
+  }
+
+  .slider-container {
+    padding: 1rem 0;
+  }
+
+  .exercises-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--p-content-border-color);
+    padding-bottom: 0.5rem;
+
+    h2 {
+      margin: 0;
+      border: none;
+      padding: 0;
+    }
+  }
+
+  .exercises-list {
+    max-height: 50dvh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    .exercise-item {
+      background: var(--p-surface-ground);
+      border: 1px solid var(--p-content-border-color);
+      border-radius: var(--p-border-radius);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+
+      .exercise-item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+
+        h3 {
+          margin: 0;
+          font-size: 1.1rem;
+          color: var(--p-primary-color);
+        }
+      }
+    }
+
+    .no-exercises {
+      text-align: center;
+      padding: 2rem;
+      color: var(--p-text-muted-color);
+      background: var(--p-surface-ground);
+      border-radius: var(--p-border-radius);
+      border: 1px dashed var(--p-content-border-color);
+    }
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
